@@ -1,4 +1,4 @@
-Shader "UTJSample/UITextureAlphaBlend"
+Shader "UTJSample/UITextureAlphaBlend_Stack"
 {
     SubShader
     {
@@ -16,8 +16,8 @@ Shader "UTJSample/UITextureAlphaBlend"
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 
-            // UI texture rendered into from DrawRenderersCustomRTRendererFeature
-            TEXTURE2D(_UITexture);
+            // UI texture rendered into from DrawStackUIRendererFeature
+            TEXTURE2D(_UIStackTexture);
 
             half4 frag (Varyings input) : SV_Target
             {
@@ -28,7 +28,7 @@ Shader "UTJSample/UITextureAlphaBlend"
                 cameraTex.rgb = FastLinearToSRGB(cameraTex.rgb);
 
                 // Sample UI texture
-                half4 uiTex = SAMPLE_TEXTURE2D(_UITexture, sampler_PointClamp, input.texcoord);
+                half4 uiTex = SAMPLE_TEXTURE2D(_UIStackTexture, sampler_PointClamp, input.texcoord);
 
                 half4 color;
 

@@ -91,7 +91,7 @@ namespace UTJSample
                     builder.SetRenderAttachment(tempTextureHandle, 0, AccessFlags.Write);
 
                     // Set UI render texture to material property
-                    this.material.SetTexture("_UITexture", this.uiRenderTexture);
+                    this.material.SetTexture("_UIStackTexture", this.uiRenderTexture);
 
                     // Resources/References for pass execution
                     // Blit source texture

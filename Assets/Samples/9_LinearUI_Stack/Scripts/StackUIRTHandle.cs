@@ -68,7 +68,7 @@ namespace UTJSample
                     0, -1
                 );
                 this.renderTexture = new RenderTexture(desc);
-                this.renderTexture.name = "_UITexture";
+                this.renderTexture.name = "_UIStackTexture";
                 this.rtHandle = RTHandles.Alloc(this.renderTexture);
             }
         }
