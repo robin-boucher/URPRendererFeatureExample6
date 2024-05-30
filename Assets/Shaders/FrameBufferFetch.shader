@@ -1,9 +1,14 @@
 Shader "UTJSample/FrameBufferFetch"
 {
+    // NOTE: Frame buffer fetch is only supported if native render pass is enabled
+    //       DX12 and OpenGL/GLES do not support native render pass, so this shader
+    //       will not work on these graphics APIs
+
     SubShader
     {
         Tags { "RenderPipeline" = "UniversalPipeline" }
         ZWrite Off
+        Cull Off
         Pass
         {
             HLSLPROGRAM
@@ -19,12 +24,10 @@ Shader "UTJSample/FrameBufferFetch"
 
             half4 Frag(Varyings input) : SV_Target
             {
-                float2 uv = input.texcoord;
-
                 // Load frame buffer input from previous pass
-                half4 frameBufferInput = LOAD_FRAMEBUFFER_X_INPUT(0, input.positionCS.xy);
+                half4 color = LOAD_FRAMEBUFFER_X_INPUT(0, input.positionCS.xy);
 
-                return frameBufferInput;
+                return color;
             }
 
             ENDHLSL

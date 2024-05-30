@@ -15,6 +15,15 @@ You can see the passes merged in the Render Graph Viewer, and compare it with th
 In order to use frame buffer fetch in a shader, use LOAD_FRAMEBUFFER_X_INPUT.
 See Assets/Shaders/FrameBufferFetch.shader for reference.
 
+NOTE: Frame buffer fetch is only supported when native render pass is enabled.
+      Native render pass is not supported on DX12 and OpenGL/GLES.
+
+      For these graphics APIs, you will need to write a fallback which does not use frame buffer fetch.
+      The _RENDER_PASS_ENABLED keyword can be used to check if native render pass is enabled.
+
+      However, as of Unity 6000.0.4f1, _RENDER_PASS_ENABLED in only set in the deferred rendering path.
+      If you are using the forward rendering path, you will need to provide a separate shader as a fallback.
+
 Renderer
 - Assets/URP/6_Blit_FrameBufferFetchRenderer
 
